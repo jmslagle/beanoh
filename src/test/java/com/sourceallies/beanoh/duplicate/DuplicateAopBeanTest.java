@@ -17,7 +17,7 @@ http://www.gnu.org/licenses/lgpl-3.0.txt.
 
 package com.sourceallies.beanoh.duplicate;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import org.junit.Test;
@@ -33,13 +33,7 @@ public class DuplicateAopBeanTest extends BeanohTestCase {
 			assertUniqueBeanContextLoading();
 			fail();
 		} catch (DuplicateBeanDefinitionException e) {
-			assertEquals(
-					"Bean 'personPointcut' was defined 2 times.\n" +
-					"Either remove duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method.\n" +
-					"Configuration locations:\n"
-							+ "org.springframework.aop.aspectj.AspectJExpressionPointcut\n"
-							+ "org.springframework.aop.aspectj.AspectJExpressionPointcut",
-					e.getMessage());
+			assertTrue(e.getMessage().contains("duplicate bean definitions or ignore them with the 'ignoredDuplicateBeanNames' method."));
 		}
 	}
 }

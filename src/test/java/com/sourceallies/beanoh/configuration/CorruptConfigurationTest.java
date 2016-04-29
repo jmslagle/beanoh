@@ -41,9 +41,7 @@ public class CorruptConfigurationTest extends BeanohTestCase {
 					e.getMessage());
 			
 			assertTrue(e.getCause() instanceof BeanDefinitionStoreException);
-			assertEquals("Line 36 in XML document from class path resource [com/sourceallies/beanoh/configuration/CorruptConfigurationTest-BeanohContext.xml] is invalid;"
-					+" nested exception is org.xml.sax.SAXParseException: The end-tag for element type \"bean\" must end with a '>' delimiter.", 
-					e.getCause().getMessage());
+			assertTrue(e.getCause().getMessage().contains("resource [com/sourceallies/beanoh/configuration/CorruptConfigurationTest-BeanohContext.xml] is invalid;"));
 			
 			assertTrue(e.getCause().getCause() instanceof org.xml.sax.SAXParseException);
 			assertEquals("The end-tag for element type \"bean\" must end with a '>' delimiter.", 
